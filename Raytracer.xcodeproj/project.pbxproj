@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF43126A244B4E4C00F5E8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431269244B4E4C00F5E8DD /* AppDelegate.swift */; };
+		AF43126C244B4E4D00F5E8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF43126B244B4E4D00F5E8DD /* Assets.xcassets */; };
+		AF43126F244B4E4D00F5E8DD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF43126D244B4E4D00F5E8DD /* MainMenu.xib */; };
+		AF431279244B4E7700F5E8DD /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431278244B4E7700F5E8DD /* Sphere.swift */; };
+		AF43127B244B4E9E00F5E8DD /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF43127A244B4E9E00F5E8DD /* Scene.swift */; };
+		AF43127D244B4ED100F5E8DD /* Solid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF43127C244B4ED100F5E8DD /* Solid.swift */; };
+		AF431281244B4FCC00F5E8DD /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431280244B4FCC00F5E8DD /* Vector.swift */; };
+		AF431283244C41D600F5E8DD /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431282244C41D600F5E8DD /* Ray.swift */; };
+		AFE43754244F190000FCC217 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE43753244F190000FCC217 /* Math.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AF431266244B4E4B00F5E8DD /* Raytracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raytracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF431269244B4E4C00F5E8DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF43126B244B4E4D00F5E8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF43126E244B4E4D00F5E8DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		AF431270244B4E4D00F5E8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF431271244B4E4D00F5E8DD /* Raytracer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Raytracer.entitlements; sourceTree = "<group>"; };
+		AF431278244B4E7700F5E8DD /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		AF43127A244B4E9E00F5E8DD /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		AF43127C244B4ED100F5E8DD /* Solid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solid.swift; sourceTree = "<group>"; };
+		AF431280244B4FCC00F5E8DD /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		AF431282244C41D600F5E8DD /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		AFE43753244F190000FCC217 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF431263244B4E4B00F5E8DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF43125D244B4E4B00F5E8DD = {
+			isa = PBXGroup;
+			children = (
+				AF431268244B4E4B00F5E8DD /* Raytracer */,
+				AF431267244B4E4B00F5E8DD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF431267244B4E4B00F5E8DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF431266244B4E4B00F5E8DD /* Raytracer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF431268244B4E4B00F5E8DD /* Raytracer */ = {
+			isa = PBXGroup;
+			children = (
+				AF431277244B4E5E00F5E8DD /* Geometry */,
+				AF431269244B4E4C00F5E8DD /* AppDelegate.swift */,
+				AF43126B244B4E4D00F5E8DD /* Assets.xcassets */,
+				AF43126D244B4E4D00F5E8DD /* MainMenu.xib */,
+				AF431270244B4E4D00F5E8DD /* Info.plist */,
+				AF431271244B4E4D00F5E8DD /* Raytracer.entitlements */,
+			);
+			path = Raytracer;
+			sourceTree = "<group>";
+		};
+		AF431277244B4E5E00F5E8DD /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				AF431278244B4E7700F5E8DD /* Sphere.swift */,
+				AF43127A244B4E9E00F5E8DD /* Scene.swift */,
+				AF43127C244B4ED100F5E8DD /* Solid.swift */,
+				AF431280244B4FCC00F5E8DD /* Vector.swift */,
+				AF431282244C41D600F5E8DD /* Ray.swift */,
+				AFE43753244F190000FCC217 /* Math.swift */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF431265244B4E4B00F5E8DD /* Raytracer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF431274244B4E4D00F5E8DD /* Build configuration list for PBXNativeTarget "Raytracer" */;
+			buildPhases = (
+				AF431262244B4E4B00F5E8DD /* Sources */,
+				AF431263244B4E4B00F5E8DD /* Frameworks */,
+				AF431264244B4E4B00F5E8DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Raytracer;
+			productName = Raytracer;
+			productReference = AF431266244B4E4B00F5E8DD /* Raytracer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF43125E244B4E4B00F5E8DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Entenwolf Software";
+				TargetAttributes = {
+					AF431265244B4E4B00F5E8DD = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+				};
+			};
+			buildConfigurationList = AF431261244B4E4B00F5E8DD /* Build configuration list for PBXProject "Raytracer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF43125D244B4E4B00F5E8DD;
+			productRefGroup = AF431267244B4E4B00F5E8DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF431265244B4E4B00F5E8DD /* Raytracer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF431264244B4E4B00F5E8DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF43126C244B4E4D00F5E8DD /* Assets.xcassets in Resources */,
+				AF43126F244B4E4D00F5E8DD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF431262244B4E4B00F5E8DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF431279244B4E7700F5E8DD /* Sphere.swift in Sources */,
+				AF43127D244B4ED100F5E8DD /* Solid.swift in Sources */,
+				AF431283244C41D600F5E8DD /* Ray.swift in Sources */,
+				AFE43754244F190000FCC217 /* Math.swift in Sources */,
+				AF431281244B4FCC00F5E8DD /* Vector.swift in Sources */,
+				AF43126A244B4E4C00F5E8DD /* AppDelegate.swift in Sources */,
+				AF43127B244B4E9E00F5E8DD /* Scene.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AF43126D244B4E4D00F5E8DD /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF43126E244B4E4D00F5E8DD /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF431272244B4E4D00F5E8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AF431273244B4E4D00F5E8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AF431275244B4E4D00F5E8DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Raytracer/Raytracer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = CF3W365R86;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Raytracer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.entenwolf.Raytracer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AF431276244B4E4D00F5E8DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Raytracer/Raytracer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = CF3W365R86;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Raytracer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.entenwolf.Raytracer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF431261244B4E4B00F5E8DD /* Build configuration list for PBXProject "Raytracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF431272244B4E4D00F5E8DD /* Debug */,
+				AF431273244B4E4D00F5E8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF431274244B4E4D00F5E8DD /* Build configuration list for PBXNativeTarget "Raytracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF431275244B4E4D00F5E8DD /* Debug */,
+				AF431276244B4E4D00F5E8DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF43125E244B4E4B00F5E8DD /* Project object */;
+}
