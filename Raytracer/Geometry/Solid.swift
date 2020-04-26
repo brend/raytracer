@@ -9,5 +9,5 @@
 import Foundation
 
 protocol Solid {
-    func intersection(with ray: Ray) -> Vector?
+    func intersections(with ray: Ray) -> [Vector]
 }

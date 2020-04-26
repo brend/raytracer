@@ -9,15 +9,12 @@
 import Foundation
 
 struct Ray {
-    let origin: Vector
-    let direction: Vector
+    let p: Vector
+    let q: Vector
     
     func tryThis(_ t: CGFloat) -> Vector {
-        let p = origin
-        let q = direction - origin
+        let d = q - p
         
-        return Vector(x: p.x + t * q.x,
-                      y: p.y + t * q.y,
-                      z: p.z + t * q.z)
+        return p + t * d
     }
 }

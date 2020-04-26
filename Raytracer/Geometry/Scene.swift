@@ -13,13 +13,17 @@ class Scene {
     var solids: [Solid] = []
     
     var light = Vector.zero
-    
-    var camera = Vector.zero
-    
+        
     func render(size: CGSize) -> NSImage {
         let image = NSImage(size: size)
+
+        image.lockFocus()
+        NSColor.black.setFill()
+        NSBezierPath(rect: .init(origin: .zero, size: size)).fill()
         
         render(onto: image)
+        
+        image.unlockFocus()
         
         return image
     }
@@ -29,42 +33,57 @@ class Scene {
         
         for j in 0..<Int(size.height) {
             for i in 0..<Int(size.width) {
+                if i == 399 && j == 399 {
+                    print("break")
+                }
                 let primRay = computePrimRay(CGFloat(i), CGFloat(j))
                 var minDistance = CGFloat.infinity
                 var object: Solid? = nil
                 var pHit: Vector? = nil
                 
                 for solid in solids {
-                    if let hit = solid.intersection(with: primRay) {
-                        let distance = CGFloat(17)
-                        
-                        if distance < minDistance {
-                            object = solid
-                            minDistance = distance
-                            pHit = hit
-                        }
+                    let intersections = solid.intersections(with: primRay)
+                    
+                    if intersections.isEmpty {
+                        continue
+                    }
+                    
+                    // TODO: Pick intersection closest to camera
+                    let hit = intersections.first!
+                    // TODO Distanz von der Kamera einsetzen
+                    let distance = Vector(x: CGFloat(i), y: CGFloat(j), z: 500).distance(to: hit)
+                    
+                    if distance < minDistance {
+                        object = solid
+                        minDistance = distance
+                        pHit = hit
                     }
                 }
                 
                 guard object != nil && pHit != nil
                 else { continue }
                 
-                let shadowRay = Ray(origin: pHit!, direction: light - pHit!)
                 var isInShadow = false
-                
-                for solid in solids {
-                    if solid.intersection(with: shadowRay) != nil {
-                        // TODO: AND solid != object?
-                        isInShadow = true
-                        break
-                    }
-                }
-                
+//                let shadowRay = Ray(p: pHit!, q: light - pHit!)
+
+//                for solid in solids {
+//                    if solid.intersection(with: shadowRay) != nil {
+//                        // TODO: AND solid != object?
+//                        isInShadow = true
+//                        break
+//                    }
+//                }
+//                
                 if !isInShadow {
                     // set pixel (i, j) := object!.color * light.brightness
+                    NSColor.white.setFill()
                 } else {
                     // set pixel (i, j) := 0
+                    NSColor.blue.setFill()
                 }
+                
+                NSBezierPath(rect: .init(x: CGFloat(i), y: CGFloat(j), width: 1, height: 1))
+                .fill()
             }
         }
     }
@@ -72,7 +91,7 @@ class Scene {
     func computePrimRay(_ x: CGFloat, _ y: CGFloat) -> Ray {
         // simplification: camera is implied to be on the x-y-plane, +500z
 
-        Ray(origin: Vector(x: x, y: y, z: 500),
-            direction: Vector(x: 0, y: 0, z: -1))
+        Ray(p: Vector(x: x, y: y, z: 500),
+            q: Vector(x: x, y: y, z: -1))
     }
 }

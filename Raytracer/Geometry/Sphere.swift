@@ -12,7 +12,7 @@ struct Sphere: Solid {
     let center: Vector
     let radius: CGFloat
     
-    func intersection(with ray: Ray) -> Vector? {
+    func intersections(with ray: Ray) -> [Vector] {
         // 1. grab the coefficients by putting the ray equation into the sphere equation
         // thus obtaining the coefficients for the quadratic equation a*x*x + b*x + c = 0
         let (a, b, c) = findCoefficients(ray)
@@ -22,19 +22,20 @@ struct Sphere: Solid {
         
         // 3. put the solutions back into the ray equation
         if solutions.isEmpty {
-            return nil
+            return []
         }
         
         let intersections = solutions.map { ray.tryThis($0) }
         
-        // 4. pick the best result, if any
-        return closest(in: intersections)!
+        let schmock = intersections.map { center.distance(to: $0) }
+        let hack = intersections.filter { abs(radius - center.distance(to: $0)) < 1  }
+        
+        return hack
     }
     
     func findCoefficients(_ ray: Ray) -> (CGFloat, CGFloat, CGFloat) {
-        let p = ray.origin
-        //let q = ray.origin + ray.direction
-        let q = ray.direction - ray.origin
+        let p = ray.p
+        let q = ray.q
         let dx = q.x - p.x
         let dy = q.y - p.y
         let dz = q.z - p.z
@@ -42,7 +43,7 @@ struct Sphere: Solid {
         let dcy = p.y - center.y
         let dcz = p.z - center.z
         let a = dx*dx + dy*dy + dz*dz
-        let b = 4 * (dx * dcx + dy * dcy + dz * dcz)
+        let b = 6 * (dx * dcx + dy * dcy + dz * dcz)
         let c = dcx * dcx + dcy * dcy + dcz * dcz - radius * radius
         
         return (a, b, c)
