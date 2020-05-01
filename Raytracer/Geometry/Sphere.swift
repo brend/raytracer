@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import Cocoa
 
 struct Sphere: Solid {
     let center: Vector
     let radius: CGFloat
+    
+    let color: NSColor
     
     func intersections(with ray: Ray) -> [Vector] {
         // 1. grab the coefficients by putting the ray equation into the sphere equation
@@ -43,7 +46,7 @@ struct Sphere: Solid {
         let dcy = p.y - center.y
         let dcz = p.z - center.z
         let a = dx*dx + dy*dy + dz*dz
-        let b = 6 * (dx * dcx + dy * dcy + dz * dcz)
+        let b = 2 * (dx * dcx + dy * dcy + dz * dcz)
         let c = dcx * dcx + dcy * dcy + dcz * dcz - radius * radius
         
         return (a, b, c)

@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import Cocoa
 
 protocol Solid {
     func intersections(with ray: Ray) -> [Vector]
+    var color: NSColor { get }
 }

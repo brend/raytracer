@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import Cocoa
 
 struct NormCube: Solid {
+    let color: NSColor
+    
     func intersections(with ray: Ray) -> [Vector] {
         if abs(ray.p.x) <= 20 && abs(ray.p.y) <= 20 {
             return [Vector(x: ray.p.x, y: ray.p.y, z: 0)]

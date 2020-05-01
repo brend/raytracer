@@ -25,8 +25,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func setupScene() {
-        scene.solids.append(Sphere(center: .zero, radius: 100))
-        //scene.solids.append(NormCube())
+        scene.solids.append(Sphere(center: .zero, radius: 100, color: .blue))
+        //scene.solids.append(Sphere(center: Vector(x: 30, y: 70, z: 0), radius: 60, color: .yellow))
+        
         scene.light = Vector(x: 200, y: 200, z: 200)
         
         let image = scene.render(size: CGSize(width: 400, height: 400))
