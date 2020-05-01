@@ -17,4 +17,8 @@ struct Ray {
         
         return p + t * d
     }
+    
+    static func -(lhs: Ray, rhs: Vector) -> Ray {
+        Ray(p: lhs.p - rhs, q: lhs.q - rhs)
+    }
 }

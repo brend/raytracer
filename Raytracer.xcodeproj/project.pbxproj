@@ -15,7 +15,7 @@
 		AF43127D244B4ED100F5E8DD /* Solid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF43127C244B4ED100F5E8DD /* Solid.swift */; };
 		AF431281244B4FCC00F5E8DD /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431280244B4FCC00F5E8DD /* Vector.swift */; };
 		AF431283244C41D600F5E8DD /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431282244C41D600F5E8DD /* Ray.swift */; };
-		AF6B7FB12455C05A00BD980C /* NormCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6B7FB02455C05A00BD980C /* NormCube.swift */; };
+		AF8BC684245C66AF003EB08A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8BC683245C66AF003EB08A /* Color.swift */; };
 		AFE43754244F190000FCC217 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE43753244F190000FCC217 /* Math.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,7 @@
 		AF43127C244B4ED100F5E8DD /* Solid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solid.swift; sourceTree = "<group>"; };
 		AF431280244B4FCC00F5E8DD /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		AF431282244C41D600F5E8DD /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
-		AF6B7FB02455C05A00BD980C /* NormCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormCube.swift; sourceTree = "<group>"; };
+		AF8BC683245C66AF003EB08A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		AFE43753244F190000FCC217 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +71,7 @@
 				AF43126D244B4E4D00F5E8DD /* MainMenu.xib */,
 				AF431270244B4E4D00F5E8DD /* Info.plist */,
 				AF431271244B4E4D00F5E8DD /* Raytracer.entitlements */,
+				AF8BC683245C66AF003EB08A /* Color.swift */,
 			);
 			path = Raytracer;
 			sourceTree = "<group>";
@@ -79,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				AF431278244B4E7700F5E8DD /* Sphere.swift */,
-				AF6B7FB02455C05A00BD980C /* NormCube.swift */,
 				AF43127A244B4E9E00F5E8DD /* Scene.swift */,
 				AF43127C244B4ED100F5E8DD /* Solid.swift */,
 				AF431280244B4FCC00F5E8DD /* Vector.swift */,
@@ -163,8 +163,8 @@
 				AF43127D244B4ED100F5E8DD /* Solid.swift in Sources */,
 				AF431283244C41D600F5E8DD /* Ray.swift in Sources */,
 				AFE43754244F190000FCC217 /* Math.swift in Sources */,
-				AF6B7FB12455C05A00BD980C /* NormCube.swift in Sources */,
 				AF431281244B4FCC00F5E8DD /* Vector.swift in Sources */,
+				AF8BC684245C66AF003EB08A /* Color.swift in Sources */,
 				AF43126A244B4E4C00F5E8DD /* AppDelegate.swift in Sources */,
 				AF43127B244B4E9E00F5E8DD /* Scene.swift in Sources */,
 			);

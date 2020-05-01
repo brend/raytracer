@@ -14,6 +14,9 @@ struct Sphere: Solid {
     let radius: CGFloat
     
     let color: NSColor
+    let shadowColor: NSColor
+    
+    let id: Int
     
     func intersections(with ray: Ray) -> [Vector] {
         // 1. grab the coefficients by putting the ray equation into the sphere equation
@@ -30,7 +33,9 @@ struct Sphere: Solid {
         
         let intersections = solutions.map { ray.tryThis($0) }
         
-        let schmock = intersections.map { center.distance(to: $0) }
+        //let schmock = intersections.map { center.distance(to: $0) }
+        //TODO: Fix hack
+        //HACK
         let hack = intersections.filter { abs(radius - center.distance(to: $0)) < 1  }
         
         return hack

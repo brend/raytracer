@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Vector {
+struct Vector: Equatable {
     let x: CGFloat
     let y: CGFloat
     let z: CGFloat
