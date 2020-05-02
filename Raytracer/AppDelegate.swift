@@ -21,32 +21,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var imageCount = 0
     
-    var image = NSImage(size: NSSize(width: 200, height: 200))
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        Timer.scheduledTimer(withTimeInterval: 1.0 / 24, repeats: true) {
+        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) {
             timer in
-            self.setupScene()
             
-            self.imageView.image = nil
-            self.imageView.image = self.image
-            
-//            if let data = image.tiffRepresentation {
-//                do {
-//                    try data.write(to: URL(fileURLWithPath: "/Users/waldrumpus/Downloads/output/image_\(String(format: "%04d", arguments: [self.imageCount])).tiff"), options: .atomic)
-//                } catch {
-//                    print("error: \(error)")
-//                }
-//            }
-            
-            self.imageCount += 1
+            self.executeWithTiming {
+                let image = self.renderScene()
+                
+                self.imageView.image = image
+               
+                self.imageCount += 1
+            }
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
     }
+    
+    func executeWithTiming(task: () -> Void)
+    {
+        let start = DispatchTime.now()
+        task()
+        let end = DispatchTime.now()
+    
+        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+        let timeInterval = Double(nanoTime) / 1_000_000_000
+    
+        print("Task duration: \(timeInterval) seconds")
+    }
 
-    func setupScene() {
+    func renderScene() -> NSImage {
         scene.light = Vector(x: 200, y: 200, z: 200)
         
         scene.solids.removeAll()
@@ -57,9 +61,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scene.camera = Ray(p: cameraPosition,
                            q: .zero - cameraPosition)
         
-        scene.render(onto: self.image)
-        
         angle += .pi / 100
+        
+        let image = scene.render(size: CGSize(width: 200, height: 200))
+        
+        return image
     }
 }
 

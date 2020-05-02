@@ -13,8 +13,8 @@ struct Sphere: Solid {
     let center: Vector
     let radius: CGFloat
     
-    let color: NSColor
-    let shadowColor: NSColor
+    let color: Color
+    let shadowColor: Color
     
     let id: Int
     

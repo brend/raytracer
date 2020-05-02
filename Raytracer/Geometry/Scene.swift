@@ -13,64 +13,83 @@ class Scene {
     var solids: [Solid] = []
     var light = Vector.zero
     var camera = Ray(p: Vector(x: 0, y: 0, z: 500), q: Vector(x: 0, y: 0, z: 499))
-        
+    var interlaced = false
+    
     func render(size: CGSize) -> NSImage {
-        let image = NSImage(size: size)
-
-        render(onto: image)
+        let bitmap = NSBitmapImageRep(
+            bitmapDataPlanes: nil,
+            pixelsWide: Int(size.width),
+            pixelsHigh: Int(size.height),
+            bitsPerSample: 8,
+            samplesPerPixel: 3,
+            hasAlpha: false,
+            isPlanar: false,
+            colorSpaceName: .deviceRGB,
+            bitmapFormat: .init(),
+            bytesPerRow: 3 * Int(size.width),
+            bitsPerPixel: 24)
+        let data = bitmap!.bitmapData!
+        
+        render(size: size, buffer: data)
+        
+        let image = NSImage()
+        
+        image.addRepresentation(bitmap!)
         
         return image
     }
     
-    func render(onto image: NSImage) {
-        let size = image.size
-        
-        image.lockFocus()
-        NSColor.black.setFill()
-        NSBezierPath(rect: .init(origin: .zero, size: size)).fill()
-        
-        renderFrame(onto: image)
-        
-        image.unlockFocus()
-    }
-    
-    func renderFrame(onto image: NSImage) {
-        let size = image.size
-        
-//        for j in 0..<Int(size.height) {
-//            for i in 0..<Int(size.width) {
-        for j in stride(from: 0, to: Int(size.height), by: 2) {
-            for i in stride(from: j.isMultiple(of: 4) ? 0 : 1, to: Int(size.width), by: 2) {
-                guard let (object, pHit) = objectHit(i, j, size)
-                    else { continue }
-                
-                var isInShadow = false
-                let shadowRay = Ray(p: pHit, q: light - pHit)
-
-                for solid in solids {
-                    guard solid.id != object.id else {
-                        continue
-                    }
-                    
-                    if !solid.intersections(with: shadowRay).isEmpty {
-                        // TODO: AND solid != object?
-                        isInShadow = true
-                        break
-                    }
+    func render(size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
+        if interlaced {
+            for j in stride(from: 0, to: Int(size.height), by: 2) {
+                for i in stride(from: j.isMultiple(of: 4) ? 0 : 1, to: Int(size.width), by: 2) {
+                    renderPixel(i, j, size: size, buffer: buffer)
                 }
-                
-                if !isInShadow {
-                    // set pixel (i, j) := object!.color * light.brightness
-                    object.color.setFill()
-                } else {
-                    // set pixel (i, j) := 0
-                    object.shadowColor.setFill()
+            }
+        } else {
+            for j in 0..<Int(size.height) {
+                for i in 0..<Int(size.width) {
+                    renderPixel(i, j, size: size, buffer: buffer)
                 }
-                
-                NSBezierPath(rect: .init(x: CGFloat(i), y: CGFloat(j), width: 1, height: 1))
-                .fill()
             }
         }
+    }
+    
+    func renderPixel(_ i: Int, _ j: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
+        guard let (object, pHit) = objectHit(i, j, size) else { return }
+            
+        var isInShadow = false
+        let shadowRay = Ray(p: pHit, q: light - pHit)
+
+        for solid in solids {
+            guard solid.id != object.id else {
+                continue
+            }
+            
+            if !solid.intersections(with: shadowRay).isEmpty {
+                // TODO: AND solid != object?
+                isInShadow = true
+                break
+            }
+        }
+        
+        let pixelColor: Color
+        
+        if !isInShadow {
+            pixelColor = object.color
+        } else {
+            pixelColor = object.shadowColor
+        }
+        
+        fillPixel(i, j, buffer: buffer, size: size, color: pixelColor)
+    }
+    
+    func fillPixel(_ i: Int, _ j: Int, buffer: UnsafeMutablePointer<UInt8>, size: CGSize, color: Color) {
+        let offset = 3 * (j * Int(size.width) + i)
+        
+        buffer[offset + 0] = color.red
+        buffer[offset + 1] = color.green
+        buffer[offset + 2] = color.blue
     }
     
     func objectHit(_ i: Int, _ j: Int, _ size: CGSize) -> (Solid, Vector)? {
@@ -86,10 +105,9 @@ class Scene {
                 continue
             }
                         
-            // TODO: Pick intersection closest to camera
             let hit = intersections.min(by: {primRay.p.distance(to: $0) < primRay.p.distance(to: $1)})!
             // TODO Distanz von der Kamera einsetzen
-            let distance = Vector(x: CGFloat(i), y: CGFloat(j), z: 500).distance(to: hit)
+            let distance = primRay.p.distance(to: hit)
             
             if distance < minDistance {
                 object = solid

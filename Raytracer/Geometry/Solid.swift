@@ -11,7 +11,7 @@ import Cocoa
 
 protocol Solid {
     func intersections(with ray: Ray) -> [Vector]
-    var color: NSColor { get }
-    var shadowColor: NSColor { get }
+    var color: Color { get }
+    var shadowColor: Color { get }
     var id: Int { get }
 }
