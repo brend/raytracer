@@ -85,12 +85,9 @@ class Scene {
             if intersections.isEmpty {
                 continue
             }
-            
-            // TODO: use actual camera data
-            let camera = Vector(x: 0, y: 0, z: 500)
-            
+                        
             // TODO: Pick intersection closest to camera
-            let hit = intersections.min(by: {camera.distance(to: $0) < camera.distance(to: $1)})!
+            let hit = intersections.min(by: {primRay.p.distance(to: $0) < primRay.p.distance(to: $1)})!
             // TODO Distanz von der Kamera einsetzen
             let distance = Vector(x: CGFloat(i), y: CGFloat(j), z: 500).distance(to: hit)
             
