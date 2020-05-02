@@ -51,11 +51,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         scene.solids.removeAll()
         scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
-        scene.solids.append(Sphere(center: Vector(x: 0, y: -100 + angle, z: 30), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
+        scene.solids.append(Sphere(center: Vector(x: 80 * cos(angle), y: 80 * -sin(angle), z: 0), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
+        
+        let cameraPosition = Vector(x: 0, y: 0, z: 500)
+        scene.camera = Ray(p: cameraPosition,
+                           q: .zero - cameraPosition)
         
         scene.render(onto: self.image)
         
-        angle += 1
+        angle += .pi / 100
     }
 }
 
