@@ -27,35 +27,51 @@ class Scene {
             colorSpaceName: .deviceRGB,
             bitmapFormat: .init(),
             bytesPerRow: 3 * Int(size.width),
-            bitsPerPixel: 24)
-        let data = bitmap!.bitmapData!
+            bitsPerPixel: 24)!
+        let data = bitmap.bitmapData!
         
         render(size: size, buffer: data)
         
         let image = NSImage()
         
-        image.addRepresentation(bitmap!)
+        image.addRepresentation(bitmap)
         
         return image
     }
     
-    func render(size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
-        if interlaced {
-            for j in stride(from: 0, to: Int(size.height), by: 2) {
-                for i in stride(from: j.isMultiple(of: 4) ? 0 : 1, to: Int(size.width), by: 2) {
-                    renderPixel(i, j, size: size, buffer: buffer)
-                }
+    func renderRows(from start: Int, to finish: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>, queue: DispatchQueue) {
+        for j in start..<finish {
+            if interlaced && j.isMultiple(of: 2) {
+                continue
             }
-        } else {
-            for j in 0..<Int(size.height) {
-                for i in 0..<Int(size.width) {
-                    renderPixel(i, j, size: size, buffer: buffer)
+            
+            for i in 0..<Int(size.width) {
+                if interlaced && i.isMultiple(of: 2) {
+                    continue
                 }
+                
+                renderPixel(i, j, size: size, buffer: buffer, queue: queue)
             }
         }
     }
     
-    func renderPixel(_ i: Int, _ j: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
+    func render(size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
+        let queue = DispatchQueue(label: "raytracer.worker", attributes: .concurrent)
+        let group = DispatchGroup()
+        let rowCount = Int(size.height)
+        let taskCount = 8
+        let rowsPerTask = rowCount / taskCount
+        
+        for task in 0..<taskCount {
+            queue.async(group: group) {
+                self.renderRows(from: task * rowsPerTask, to: (task+1) * rowsPerTask, size: size, buffer: buffer, queue: queue)
+            }
+        }
+        
+        group.wait()
+    }
+    
+    func renderPixel(_ i: Int, _ j: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>, queue: DispatchQueue) {
         guard let (object, pHit) = objectHit(i, j, size) else { return }
             
         var isInShadow = false
@@ -80,7 +96,7 @@ class Scene {
         } else {
             pixelColor = object.shadowColor
         }
-        
+                
         fillPixel(i, j, buffer: buffer, size: size, color: pixelColor)
     }
     

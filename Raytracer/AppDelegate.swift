@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var imageCount = 0
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) {
+        Timer.scheduledTimer(withTimeInterval: 0.06, repeats: true) {
             timer in
             
             self.executeWithTiming {
@@ -51,19 +51,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func renderScene() -> NSImage {
-        scene.light = Vector(x: 200, y: 200, z: 200)
+        scene.light = Vector(x: 100, y: 100, z: 100)
         
         scene.solids.removeAll()
         scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
         scene.solids.append(Sphere(center: Vector(x: 80 * cos(angle), y: 80 * -sin(angle), z: 0), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
         
+        scene.solids.append(Sphere(center: scene.light, radius: 10, color: .yellow, shadowColor: .yellow, id: 3))
+        
         let cameraPosition = Vector(x: 0, y: 0, z: 500)
         scene.camera = Ray(p: cameraPosition,
                            q: .zero - cameraPosition)
         
-        angle += .pi / 100
+        angle += .pi / 80
         
-        let image = scene.render(size: CGSize(width: 200, height: 200))
+        let image = scene.render(size: CGSize(width: 400, height: 400))
         
         return image
     }
