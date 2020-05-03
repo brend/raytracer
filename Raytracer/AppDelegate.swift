@@ -68,9 +68,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         angle += -.pi / 80
 
-        let image = scene.render(size: CGSize(width: 400, height: 400))
+        let canvas = BitmapCanvas(size: CGSize(width: 400, height: 400))!
+        
+        scene.render(on: canvas)
 
-        return image
+        return canvas.image()
     }
 
     

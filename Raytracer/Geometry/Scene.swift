@@ -15,69 +15,45 @@ class Scene {
     var camera = Ray(p: Vector(x: 0, y: 0, z: 500), q: Vector(x: 0, y: 0, z: 499))
     var interlaced = false
     
-    func render(size: CGSize) -> NSImage {
-        let bitmap = NSBitmapImageRep(
-            bitmapDataPlanes: nil,
-            pixelsWide: Int(size.width),
-            pixelsHigh: Int(size.height),
-            bitsPerSample: 8,
-            samplesPerPixel: 3,
-            hasAlpha: false,
-            isPlanar: false,
-            colorSpaceName: .deviceRGB,
-            bitmapFormat: .init(),
-            bytesPerRow: 3 * Int(size.width),
-            bitsPerPixel: 24)!
-        let data = bitmap.bitmapData!
-        
-        render(size: size, buffer: data)
-        
-        let image = NSImage()
-        
-        image.addRepresentation(bitmap)
-        
-        return image
-    }
-    
-    func renderRows(from start: Int, to finish: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
+    func renderRows(from start: Int, to finish: Int, on canvas: Canvas) {
         for j in start..<finish {
             if interlaced && j.isMultiple(of: 2) {
                 continue
             }
             
-            for i in 0..<Int(size.width) {
+            for i in 0..<Int(canvas.size.width) {
                 if interlaced && i.isMultiple(of: 2) {
                     continue
                 }
                 
-                renderPixel(i, j, size: size, buffer: buffer)
+                renderPixel(i, j, on: canvas)
             }
         }
     }
     
-    func render(size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
+    func render(on canvas: Canvas) {
         let queue = DispatchQueue(label: "raytracer.worker", attributes: .concurrent)
         let group = DispatchGroup()
-        let rowCount = Int(size.height)
+        let rowCount = Int(canvas.size.height)
         let taskCount = 8
         let rowsPerTask = rowCount / taskCount
         
         for task in 0..<taskCount {
             queue.async(group: group) {
-                self.renderRows(from: task * rowsPerTask, to: (task+1) * rowsPerTask, size: size, buffer: buffer)
+                self.renderRows(from: task * rowsPerTask, to: (task+1) * rowsPerTask, on: canvas)
             }
         }
         
         group.wait()
     }
     
-    func renderPixel(_ i: Int, _ j: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
-        guard let (object, pHit) = objectHit(i, j, size) else { return }
+    func renderPixel(_ i: Int, _ j: Int, on canvas: Canvas) {
+        guard let (object, pHit) = objectHit(i, j, canvas.size) else { return }
             
         let isInShadow = pixelShadowed(object: object, pHit: pHit)
         let pixelColor = isInShadow ? object.shadowColor : object.color
                 
-        fillPixel(i, j, buffer: buffer, size: size, color: pixelColor)
+        canvas.fillPixel(i, j, color: pixelColor)
     }
     
     func pixelShadowed(object: Solid, pHit: Vector) -> Bool {
@@ -99,14 +75,6 @@ class Scene {
         }
         
         return false
-    }
-    
-    func fillPixel(_ i: Int, _ j: Int, buffer: UnsafeMutablePointer<UInt8>, size: CGSize, color: Color) {
-        let offset = 3 * (j * Int(size.width) + i)
-        
-        buffer[offset + 0] = color.red
-        buffer[offset + 1] = color.green
-        buffer[offset + 2] = color.blue
     }
     
     func objectHit(_ i: Int, _ j: Int, _ size: CGSize) -> (Solid, Vector)? {
