@@ -14,6 +14,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     
     @IBOutlet weak var imageView: NSImageView!
+    
+    @IBOutlet weak var interlacedCheckbox: NSSwitch!
+    
+    var demoDistance = CGFloat(0)
 
     let scene = Scene()
     
@@ -51,23 +55,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func renderScene() -> NSImage {
-        scene.light = Vector(x: 100, y: 100, z: 100)
-        
+        let cameraPosition = Vector(x: 0, y: 0, z: 500)
+
+        scene.camera = Ray(p: cameraPosition, q: .zero - cameraPosition)
+        scene.light = Vector(x: 0, y: -500, z: 0)
+
+        scene.interlaced = self.interlacedCheckbox.state == .on
+                
         scene.solids.removeAll()
         scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
-        scene.solids.append(Sphere(center: Vector(x: 80 * cos(angle), y: 80 * -sin(angle), z: 0), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
-        
-        scene.solids.append(Sphere(center: scene.light, radius: 10, color: .yellow, shadowColor: .yellow, id: 3))
-        
-        let cameraPosition = Vector(x: 0, y: 0, z: 500)
-        scene.camera = Ray(p: cameraPosition,
-                           q: .zero - cameraPosition)
-        
-        angle += .pi / 80
-        
+        scene.solids.append(Sphere(center: Vector(x: 80*sin(angle), y: 80*cos(angle), z: 0), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
+
+        angle += -.pi / 80
+
         let image = scene.render(size: CGSize(width: 400, height: 400))
-        
+
         return image
     }
+
+    
+    @IBAction func distanceChanged(_ sender: NSSlider) {
+        self.demoDistance = CGFloat(sender.floatValue)
+    }
+    
 }
 

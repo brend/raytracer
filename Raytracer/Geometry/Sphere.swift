@@ -56,12 +56,4 @@ struct Sphere: Solid {
         
         return (a, b, c)
     }
-    
-    func closest(in points: [Vector]) -> Vector? {
-        guard !points.isEmpty else { return nil }
-        
-        // TODO: Implement -- actually we need the point closest to the camera, don't we?
-        
-        return points.first!
-    }
 }

@@ -11,10 +11,12 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Raytracer" customModuleProvider="target">
             <connections>
+                <outlet property="distanceSlider" destination="KPO-sI-D3S" id="rh5-KB-Inq"/>
                 <outlet property="imageView" destination="c1R-oX-Qvz" id="mql-BK-kOY"/>
+                <outlet property="interlacedCheckbox" destination="cVf-tl-2xu" id="r9l-Xn-ZTk"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -691,13 +693,29 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1R-oX-Qvz">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                        <rect key="frame" x="0.0" y="42" width="480" height="318"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="HNn-Tr-w3d"/>
                     </imageView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVf-tl-2xu">
+                        <rect key="frame" x="18" y="18" width="153" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="check" title="Interlaced rendering" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tOl-9F-URN">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KPO-sI-D3S">
+                        <rect key="frame" x="221" y="18" width="191" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="yHh-Lf-2Gj"/>
+                        <connections>
+                            <action selector="distanceChanged:" target="Voe-Tx-rLC" id="uBm-GO-Exl"/>
+                        </connections>
+                    </slider>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="139" y="-120"/>
+            <point key="canvasLocation" x="34" y="-206"/>
         </window>
     </objects>
 </document>

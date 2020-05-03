@@ -39,7 +39,7 @@ class Scene {
         return image
     }
     
-    func renderRows(from start: Int, to finish: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>, queue: DispatchQueue) {
+    func renderRows(from start: Int, to finish: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
         for j in start..<finish {
             if interlaced && j.isMultiple(of: 2) {
                 continue
@@ -50,7 +50,7 @@ class Scene {
                     continue
                 }
                 
-                renderPixel(i, j, size: size, buffer: buffer, queue: queue)
+                renderPixel(i, j, size: size, buffer: buffer)
             }
         }
     }
@@ -64,40 +64,41 @@ class Scene {
         
         for task in 0..<taskCount {
             queue.async(group: group) {
-                self.renderRows(from: task * rowsPerTask, to: (task+1) * rowsPerTask, size: size, buffer: buffer, queue: queue)
+                self.renderRows(from: task * rowsPerTask, to: (task+1) * rowsPerTask, size: size, buffer: buffer)
             }
         }
         
         group.wait()
     }
     
-    func renderPixel(_ i: Int, _ j: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>, queue: DispatchQueue) {
+    func renderPixel(_ i: Int, _ j: Int, size: CGSize, buffer: UnsafeMutablePointer<UInt8>) {
         guard let (object, pHit) = objectHit(i, j, size) else { return }
             
-        var isInShadow = false
-        let shadowRay = Ray(p: pHit, q: light - pHit)
-
-        for solid in solids {
-            guard solid.id != object.id else {
-                continue
-            }
-            
-            if !solid.intersections(with: shadowRay).isEmpty {
-                // TODO: AND solid != object?
-                isInShadow = true
-                break
-            }
-        }
-        
-        let pixelColor: Color
-        
-        if !isInShadow {
-            pixelColor = object.color
-        } else {
-            pixelColor = object.shadowColor
-        }
+        let isInShadow = pixelShadowed(object: object, pHit: pHit)
+        let pixelColor = isInShadow ? object.shadowColor : object.color
                 
         fillPixel(i, j, buffer: buffer, size: size, color: pixelColor)
+    }
+    
+    func pixelShadowed(object: Solid, pHit: Vector) -> Bool {
+        let shadowRay = Ray(p: pHit, q: light - pHit)
+        let distanceToLight = pHit.distance(to: light)
+
+        for solid in solids {
+            var intersections = solid.intersections(with: shadowRay)
+            
+            // only intersections that are closer to the light source than pHit can throw shadow on pHit
+            intersections = intersections.filter {
+                $0.distance(to: light) < distanceToLight
+                    && $0.distance(to: pHit) > 0.5
+            }
+            
+            if !intersections.isEmpty {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func fillPixel(_ i: Int, _ j: Int, buffer: UnsafeMutablePointer<UInt8>, size: CGSize, color: Color) {
@@ -122,7 +123,7 @@ class Scene {
             }
                         
             let hit = intersections.min(by: {primRay.p.distance(to: $0) < primRay.p.distance(to: $1)})!
-            // TODO Distanz von der Kamera einsetzen
+
             let distance = primRay.p.distance(to: hit)
             
             if distance < minDistance {
