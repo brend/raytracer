@@ -33,12 +33,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let image = self.renderScene()
                 
                 self.imageView.image = image
-               
+                               
                 self.imageCount += 1
             }
         }
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
     }
     
@@ -55,18 +55,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func renderScene() -> NSImage {
-        let cameraPosition = Vector(x: 0, y: 0, z: 500)
+        //let cameraPosition = Vector(x: 0, y: 0, z: 500)
 
-        scene.camera = Ray(p: cameraPosition, q: .zero - cameraPosition)
-        scene.light = Vector(x: 0, y: -500, z: 0)
+        //scene.camera = Ray(p: cameraPosition, q: .zero - cameraPosition)
+        scene.light = Vector(x: 200, y: -200, z: 100)
 
         scene.interlaced = self.interlacedCheckbox.state == .on
                 
         scene.solids.removeAll()
         scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
-        scene.solids.append(Sphere(center: Vector(x: 80*sin(angle), y: 80*cos(angle), z: 0), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
+        scene.solids.append(Sphere(center: Vector(x: 80*sin(angle), y: 80*cos(angle), z: 50), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
 
-        angle += -.pi / 80
+        angle += -.pi / 200
 
         let canvas = BitmapCanvas(size: CGSize(width: 400, height: 400))!
         

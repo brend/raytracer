@@ -13,6 +13,10 @@ struct Vector: Equatable {
     let y: CGFloat
     let z: CGFloat
     
+    var length: CGFloat {
+        sqrt(x*x + y*y + z*z)
+    }
+        
     static let zero = Vector(x: 0, y: 0, z: 0)
     
     static func -(u: Vector, v: Vector) -> Vector {
@@ -47,5 +51,11 @@ struct Vector: Equatable {
         return Vector(x: a.y * b.z - a.z * b.y,
                       y: a.z * b.x - a.x * b.z,
                       z: a.x * b.y - a.y * b.x)
+    }
+    
+    func normalized() -> Vector {
+        let length = self.length
+        
+        return length != 0 ? (1/length) * self : .zero
     }
 }

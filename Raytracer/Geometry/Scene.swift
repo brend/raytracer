@@ -12,7 +12,9 @@ import Cocoa
 class Scene {
     var solids: [Solid] = []
     var light = Vector.zero
-    var camera = Ray(p: Vector(x: 0, y: 0, z: 500), q: Vector(x: 0, y: 0, z: 499))
+    var camera = Camera(position: Vector(x: 0, y: 0, z: 500),
+                         forward: Vector(x: 0, y: 0, z: -1),
+                              up: Vector(x: 0, y: -1, z: 0))
     var interlaced = false
     
     func renderRows(from start: Int, to finish: Int, on canvas: Canvas) {
@@ -78,7 +80,7 @@ class Scene {
     }
     
     func objectHit(_ i: Int, _ j: Int, _ size: CGSize) -> (Solid, Vector)? {
-        let primRay = computePrimRay(CGFloat(i), CGFloat(j), size)
+        let primRay = camera.perspectiveRay(i, j, size: size)
         var minDistance = CGFloat.infinity
         var object: Solid? = nil
         var pHit: Vector? = nil
@@ -107,12 +109,5 @@ class Scene {
         } else {
             return nil
         }
-    }
-    
-    func computePrimRay(_ x: CGFloat, _ y: CGFloat, _ size: CGSize) -> Ray {
-        // simplification: camera is implied to be on the x-y-plane, +500z
-//        Ray(p: Vector(x: x - size.width / 2, y: y - size.height / 2, z: 500),
-//            q: Vector(x: x - size.width / 2, y: y - size.height / 2, z: 499))
-        camera - Vector(x: -x + size.width / 2, y: -y + size.height / 2, z: 0)
     }
 }
