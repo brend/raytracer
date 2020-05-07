@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Timer.scheduledTimer(withTimeInterval: 0.06, repeats: true) {
             timer in
             
-            self.executeWithTiming {
+            executeWithTiming {
                 let image = self.renderScene()
                 
                 self.imageView.image = image
@@ -42,18 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
     }
     
-    func executeWithTiming(task: () -> Void)
-    {
-        let start = DispatchTime.now()
-        task()
-        let end = DispatchTime.now()
-    
-        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
-        let timeInterval = Double(nanoTime) / 1_000_000_000
-    
-        print("Task duration: \(timeInterval) seconds")
-    }
-
     func renderScene() -> NSImage {
         //let cameraPosition = Vector(x: 0, y: 0, z: 500)
 
@@ -79,6 +67,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func distanceChanged(_ sender: NSSlider) {
         self.demoDistance = CGFloat(sender.floatValue)
     }
-    
 }
 
