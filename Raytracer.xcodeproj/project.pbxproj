@@ -16,6 +16,7 @@
 		AF431281244B4FCC00F5E8DD /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431280244B4FCC00F5E8DD /* Vector.swift */; };
 		AF431283244C41D600F5E8DD /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431282244C41D600F5E8DD /* Ray.swift */; };
 		AF5FA8CB2464774800DD44CC /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5FA8CA2464774800DD44CC /* Performance.swift */; };
+		AF5FA8CD2464780800DD44CC /* RaytracerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5FA8CC2464780800DD44CC /* RaytracerImageView.swift */; };
 		AF60E63724646A6800C65345 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60E63624646A6800C65345 /* Camera.swift */; };
 		AF8BC684245C66AF003EB08A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8BC683245C66AF003EB08A /* Color.swift */; };
 		AF8BC687245F0E28003EB08A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8BC686245F0E28003EB08A /* Canvas.swift */; };
@@ -36,6 +37,7 @@
 		AF431280244B4FCC00F5E8DD /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		AF431282244C41D600F5E8DD /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		AF5FA8CA2464774800DD44CC /* Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
+		AF5FA8CC2464780800DD44CC /* RaytracerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaytracerImageView.swift; sourceTree = "<group>"; };
 		AF60E63624646A6800C65345 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AF8BC683245C66AF003EB08A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		AF8BC686245F0E28003EB08A /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				AF8BC685245F0E04003EB08A /* Drawing */,
 				AF431277244B4E5E00F5E8DD /* Geometry */,
 				AF431269244B4E4C00F5E8DD /* AppDelegate.swift */,
+				AF5FA8CC2464780800DD44CC /* RaytracerImageView.swift */,
 				AF43126B244B4E4D00F5E8DD /* Assets.xcassets */,
 				AF43126D244B4E4D00F5E8DD /* MainMenu.xib */,
 				AF431270244B4E4D00F5E8DD /* Info.plist */,
@@ -189,6 +192,7 @@
 			files = (
 				AF60E63724646A6800C65345 /* Camera.swift in Sources */,
 				AF8BC689245F0E39003EB08A /* BitmapCanvas.swift in Sources */,
+				AF5FA8CD2464780800DD44CC /* RaytracerImageView.swift in Sources */,
 				AF431279244B4E7700F5E8DD /* Sphere.swift in Sources */,
 				AF43127D244B4ED100F5E8DD /* Solid.swift in Sources */,
 				AF431283244C41D600F5E8DD /* Ray.swift in Sources */,

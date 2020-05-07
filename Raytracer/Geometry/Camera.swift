@@ -19,7 +19,7 @@ struct Camera {
     init(position: Vector, forward: Vector, up: Vector) {
         self.position = position
         self.forward = forward
-        self.up = up
+        self.up = up.normalized()
         self.left = forward.cross(up).normalized()
     }
     

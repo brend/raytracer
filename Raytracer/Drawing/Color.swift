@@ -27,6 +27,8 @@ struct Color {
     static let darkBlue = Color(red: 0x00, green: 0x00, blue: 0x19)
     static let green = Color(red: 0x00, green: 0xFF, blue: 0x00)
     static let darkGreen = Color(red: 0x00, green: 0x19, blue: 0x00)
+    static let red = Color(red: 0xFF, green: 0x00, blue: 0x00)
+    static let darkRed = Color(red: 0x19, green: 0x00, blue: 0x00)
     static let yellow = Color(red: 0xFF, green: 0xFF, blue: 0x00)
     static let darkYellow = Color(red: 0x19, green: 0x19, blue: 0x00)
 }
