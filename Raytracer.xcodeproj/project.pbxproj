@@ -15,6 +15,7 @@
 		AF43127D244B4ED100F5E8DD /* Solid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF43127C244B4ED100F5E8DD /* Solid.swift */; };
 		AF431281244B4FCC00F5E8DD /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431280244B4FCC00F5E8DD /* Vector.swift */; };
 		AF431283244C41D600F5E8DD /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431282244C41D600F5E8DD /* Ray.swift */; };
+		AF5771B42466DE4200B668D2 /* AffineTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5771B32466DE4200B668D2 /* AffineTransformation.swift */; };
 		AF5FA8CB2464774800DD44CC /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5FA8CA2464774800DD44CC /* Performance.swift */; };
 		AF60E63724646A6800C65345 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60E63624646A6800C65345 /* Camera.swift */; };
 		AF8BC684245C66AF003EB08A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8BC683245C66AF003EB08A /* Color.swift */; };
@@ -36,6 +37,7 @@
 		AF43127C244B4ED100F5E8DD /* Solid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solid.swift; sourceTree = "<group>"; };
 		AF431280244B4FCC00F5E8DD /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		AF431282244C41D600F5E8DD /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		AF5771B32466DE4200B668D2 /* AffineTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffineTransformation.swift; sourceTree = "<group>"; };
 		AF5FA8CA2464774800DD44CC /* Performance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
 		AF60E63624646A6800C65345 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AF8BC683245C66AF003EB08A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				AF431280244B4FCC00F5E8DD /* Vector.swift */,
 				AF431282244C41D600F5E8DD /* Ray.swift */,
 				AFE43753244F190000FCC217 /* Math.swift */,
+				AF5771B32466DE4200B668D2 /* AffineTransformation.swift */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF5771B42466DE4200B668D2 /* AffineTransformation.swift in Sources */,
 				AFD36AC82465B1650074F4CC /* RTWindow.swift in Sources */,
 				AF60E63724646A6800C65345 /* Camera.swift in Sources */,
 				AF8BC689245F0E39003EB08A /* BitmapCanvas.swift in Sources */,

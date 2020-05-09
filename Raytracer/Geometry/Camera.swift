@@ -51,12 +51,17 @@ struct Camera {
             newPosition = newPosition - speed * forward
         }
         
+        var yaw = CGFloat(0)
+        
         if keys.contains(.q) {
-            
+            yaw += 0.1
         } else if keys.contains(.a) {
-            
+            yaw -= 0.1
         }
         
-        return Camera(position: newPosition, forward: forward, up: up)
+        let m = AffineTransformation(yaw: 0, pitch: 0, roll: yaw)
+        let newForward = m * forward
+        
+        return Camera(position: newPosition, forward: newForward, up: up)
     }
 }
