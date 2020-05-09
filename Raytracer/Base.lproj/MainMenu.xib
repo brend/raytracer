@@ -638,6 +638,11 @@
                                     <action selector="toggleFullScreen:" target="-1" id="dU3-MA-1Rq"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Interlaced" keyEquivalent="i" id="Cjx-7g-3Wh">
+                                <connections>
+                                    <action selector="toggleInterlaced:" target="Voe-Tx-rLC" id="Wyi-Ib-eEq"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -681,16 +686,16 @@
             </items>
             <point key="canvasLocation" x="139" y="154"/>
         </menu>
-        <window title="Raytracer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Raytracer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="RTWindow" customModule="Raytracer" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1R-oX-Qvz" customClass="RaytracerImageView" customModule="Raytracer" customModuleProvider="target">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1R-oX-Qvz">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" alignment="left" imageScaling="proportionallyDown" id="HNn-Tr-w3d"/>

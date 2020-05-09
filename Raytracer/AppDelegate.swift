@@ -23,6 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var imageCount = 0
     
+    var keys = Keys(rawValue: 0)
+        
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         imageView.becomeFirstResponder()
@@ -53,9 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scene.light = Vector(x: 200, y: -200, z: 100)
 
         updateCamera()
-        
-        scene.interlaced = false
-                
+                        
         scene.solids.removeAll()
         scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
         scene.solids.append(Sphere(center: Vector(x: 80*sin(angle), y: 80*cos(angle), z: 50), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
@@ -71,13 +71,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateCamera() {
-        let position = Vector(x: 0, y: 500 * sin(cameraAngle), z: 500 * cos(cameraAngle))
-        let forward = .zero - position
-        let up = forward.cross(Vector(x: 1, y: 0, z: 0))
-        
-        scene.camera = Camera(position: position, forward: forward, up: up)
-        
-        cameraAngle += .pi / 60
+        scene.camera = scene.camera.move(input: keys)
+    }
+    
+    @IBAction func toggleInterlaced(_ sender: NSMenuItem) {
+        if sender.state == NSControl.StateValue.on {
+            scene.interlaced = false
+            sender.state = NSControl.StateValue.off
+        } else {
+            scene.interlaced = true
+            sender.state = NSControl.StateValue.on
+        }
     }
 }
 

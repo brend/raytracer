@@ -18,15 +18,45 @@ struct Camera {
     
     init(position: Vector, forward: Vector, up: Vector) {
         self.position = position
-        self.forward = forward
+        self.forward = forward.normalized()
         self.up = up.normalized()
         self.left = forward.cross(up).normalized()
     }
     
     func perspectiveRay(_ i: Int, _ j: Int, size: CGSize) -> Ray {
         let p = position + (CGFloat(i) - size.width * 0.5) * left + (CGFloat(j) - size.height * 0.5) * up
-        let q = p + forward
+//        let q = p + forward
+        
+        let size2 = CGSize(width: 1.1 * size.width, height: 1.1 * size.height)
+        let dist2 = CGFloat(100)
+        let q = position + dist2 * forward + (CGFloat(i) * (size2.width / size.width) - size2.width * 0.5) * left + (CGFloat(j) * (size2.height / size.height) - size2.height * 0.5) * up
+        
         
         return Ray(p: p, q: q)
+    }
+    
+    func move(input keys: Keys) -> Camera {
+        let speed = CGFloat(25)
+        var newPosition = position
+        
+        if keys.contains(.left) {
+            newPosition = position - speed * left
+        } else if keys.contains(.right) {
+            newPosition = position + speed * left
+        }
+        
+        if keys.contains(.up) {
+            newPosition = newPosition + speed * forward
+        } else if keys.contains(.down) {
+            newPosition = newPosition - speed * forward
+        }
+        
+        if keys.contains(.q) {
+            
+        } else if keys.contains(.a) {
+            
+        }
+        
+        return Camera(position: newPosition, forward: forward, up: up)
     }
 }
