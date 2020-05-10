@@ -1,5 +1,5 @@
 //
-//  Matrix.swift
+//  Projection.swift
 //  Raytracer
 //
 //  Created by Philipp Brendel on 09.05.20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AffineTransformation {
+struct Projection {
     let a1, a2, a3, a4,
         b1, b2, b3, b4,
         c1, c2, c3, c4,
@@ -38,6 +38,11 @@ struct AffineTransformation {
         c3 = cos_pitch * cos_roll
         c4 = z
         
+//        d1 = 0
+//        d2 = 0
+//        d3 = -1
+//        d4 = 0
+        
         d1 = 0
         d2 = 0
         d3 = 0
@@ -48,9 +53,12 @@ struct AffineTransformation {
         self.init(yaw: 0, pitch: 0, roll: 0, x: vector.x, y: vector.y, z: vector.z)
     }
     
-    static func *(m: AffineTransformation, v: Vector) -> Vector {
-        Vector(x: m.a1 * v.x + m.a2 * v.y + m.a3 * v.z + m.a4,
-               y: m.b1 * v.x + m.b2 * v.y + m.b3 * v.z + m.b4,
-               z: m.c1 * v.x + m.c2 * v.y + m.c3 * v.z + m.c4)
+    static func *(m: Projection, v: Vector) -> Vector {
+        let w = m.d1 * v.x + m.d2 * v.y + m.d3 * v.z + m.d4
+        let x = (m.a1 * v.x + m.a2 * v.y + m.a3 * v.z + m.a4) / w
+        let y = (m.b1 * v.x + m.b2 * v.y + m.b3 * v.z + m.b4) / w
+        let z = (m.c1 * v.x + m.c2 * v.y + m.c3 * v.z + m.c4) / w
+        
+        return Vector(x: x, y: y, z: z)
     }
 }
