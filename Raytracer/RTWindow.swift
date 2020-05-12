@@ -12,28 +12,49 @@ import Cocoa
 struct Keys: OptionSet {
     let rawValue: UInt16
     
-    static let left     = Keys(rawValue: 0b0000_0001)
-    static let right    = Keys(rawValue: 0b0000_0010)
-    static let up       = Keys(rawValue: 0b0000_0100)
-    static let down     = Keys(rawValue: 0b0000_1000)
+    static let left     = Keys(rawValue: 0b0000_0000_0001)
+    static let right    = Keys(rawValue: 0b0000_0000_0010)
+    static let up       = Keys(rawValue: 0b0000_0000_0100)
+    static let down     = Keys(rawValue: 0b0000_0000_1000)
     
-    static let q        = Keys(rawValue: 0b0001_0000)
-    static let a        = Keys(rawValue: 0b0010_0000)
+    static let q        = Keys(rawValue: 0b0000_0001_0000)
+    static let a        = Keys(rawValue: 0b0000_0010_0000)
+    
+    static let w        = Keys(rawValue: 0b0000_0100_0000)
+    static let s        = Keys(rawValue: 0b0000_1000_0000)
+    
+    static let e        = Keys(rawValue: 0b0001_0000_0000)
+    static let d        = Keys(rawValue: 0b0010_0000_0000)
+    
+    static let r        = Keys(rawValue: 0b0100_0000_0000)
+    static let f        = Keys(rawValue: 0b1000_0000_0000)
     
     static func keyCode(_ keyCode: UInt16) -> Keys {
         switch keyCode {
         case 126:
-            return Keys.up
+            return .up
         case 125:
-            return Keys.down
+            return .down
         case 123:
-            return Keys.left
+            return .left
         case 124:
-            return Keys.right
+            return .right
         case 12:
-            return Keys.q
+            return .q
         case 0:
-            return Keys.a
+            return .a
+        case 13:
+            return .w
+        case 1:
+            return .s
+        case 2:
+            return .d
+        case 14:
+            return .e
+        case 15:
+            return .r
+        case 3:
+            return .f
         default:
             return Keys(rawValue: 0)
         }

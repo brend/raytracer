@@ -12,8 +12,7 @@ import Cocoa
 class Scene {
     var solids: [Solid] = []
     var light = Vector.zero
-    var camera = Camera(position: Vector(x: 0, y: 0, z: 500),
-                        yaw: 0, pitch: 0, roll: 0)
+    var camera = Camera(position: Vector(x: 0, y: 0, z: 500), forward: Vector(x: 0, y: 0, z: -1), up: Vector(x: 0, y: -1, z: 0))
     var interlaced = false
     
     func renderRows(from start: Int, to finish: Int, on canvas: Canvas) {
