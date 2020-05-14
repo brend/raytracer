@@ -57,9 +57,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateCamera()
                         
         scene.solids.removeAll()
-        scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
-        scene.solids.append(Sphere(center: Vector(x: 80*sin(angle), y: 80*cos(angle), z: 50), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
-        scene.solids.append(Sphere(center: Vector(x: 0, y: -50, z: 0), radius: 10, color: .red, shadowColor: .darkRed, id: 3))
+//        scene.solids.append(Sphere(center: .zero, radius: 50, color: .blue, shadowColor: .darkBlue, id: 1))
+//        scene.solids.append(Sphere(center: Vector(x: 80*sin(angle), y: 80*cos(angle), z: 50), radius: 20, color: .yellow, shadowColor: .darkYellow, id: 2))
+//        scene.solids.append(Sphere(center: Vector(x: 0, y: -50, z: 0), radius: 10, color: .red, shadowColor: .darkRed, id: 3))
+        
+        //scene.solids.append(Triangle(.zero, Vector(x: 0, y: -50, z: 0), Vector(x: 50, y: 0, z: 0)))
+        scene.solids.append(Box(edgeLength: 100))
         
         angle += -.pi / 200
 

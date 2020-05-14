@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF07D4CF246D55E3009A90EA /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07D4CE246D55E3009A90EA /* Triangle.swift */; };
+		AF07D4D1246DA20B009A90EA /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07D4D0246DA20B009A90EA /* Box.swift */; };
 		AF43126A244B4E4C00F5E8DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF431269244B4E4C00F5E8DD /* AppDelegate.swift */; };
 		AF43126C244B4E4D00F5E8DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF43126B244B4E4D00F5E8DD /* Assets.xcassets */; };
 		AF43126F244B4E4D00F5E8DD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF43126D244B4E4D00F5E8DD /* MainMenu.xib */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF07D4CE246D55E3009A90EA /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		AF07D4D0246DA20B009A90EA /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		AF431266244B4E4B00F5E8DD /* Raytracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raytracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF431269244B4E4C00F5E8DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF43126B244B4E4D00F5E8DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				AF431282244C41D600F5E8DD /* Ray.swift */,
 				AFE43753244F190000FCC217 /* Math.swift */,
 				AF5771B32466DE4200B668D2 /* Projection.swift */,
+				AF07D4CE246D55E3009A90EA /* Triangle.swift */,
+				AF07D4D0246DA20B009A90EA /* Box.swift */,
 			);
 			path = Geometry;
 			sourceTree = "<group>";
@@ -206,7 +212,9 @@
 				AF8BC687245F0E28003EB08A /* Canvas.swift in Sources */,
 				AF8BC684245C66AF003EB08A /* Color.swift in Sources */,
 				AF43126A244B4E4C00F5E8DD /* AppDelegate.swift in Sources */,
+				AF07D4D1246DA20B009A90EA /* Box.swift in Sources */,
 				AF43127B244B4E9E00F5E8DD /* Scene.swift in Sources */,
+				AF07D4CF246D55E3009A90EA /* Triangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

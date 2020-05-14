@@ -15,3 +15,11 @@ protocol Solid {
     var shadowColor: Color { get }
     var id: Int { get }
 }
+
+var idCounter = 0
+
+func makeId() -> Int {
+    idCounter += 1
+    
+    return idCounter
+}

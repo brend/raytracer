@@ -53,6 +53,10 @@ struct Vector: Equatable {
                       z: a.x * b.y - a.y * b.x)
     }
     
+    func dot(_ b: Vector) -> CGFloat {
+        x * b.x + y * b.y + z * b.z
+    }
+    
     func normalized() -> Vector {
         let length = self.length
         

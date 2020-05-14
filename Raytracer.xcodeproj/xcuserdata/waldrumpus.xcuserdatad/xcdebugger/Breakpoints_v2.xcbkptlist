@@ -28,16 +28,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "257C79E8-81D6-4010-A932-F06A8A82CA05"
+            uuid = "94B55EDC-9BA8-4F94-99EC-EC31221DBDF5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Raytracer/Geometry/Camera.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "move(input:)"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "perspectiveRay(_:_:size:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
