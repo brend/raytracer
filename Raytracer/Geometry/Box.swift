@@ -30,13 +30,13 @@ struct Box: Solid {
                      Vector(x: e, y: e, z: e),
                      Vector(x: e, y: e, z: -e), color: .blue, shadowColor: .darkBlue),
             
-//            Triangle(Vector(x: e, y: -e, z: e),
-//                     Vector(x: -e, y: -e, z: e),
-//                     Vector(x: e, y: e, z: e), color: .yellow, shadowColor: .darkYellow),
-//            Triangle(Vector(x: -e, y: -e, z: e),
-//                     Vector(x: -e, y: e, z: e),
-//                     Vector(x: e, y: e, z: e), color: .yellow, shadowColor: .darkYellow),
-//
+            Triangle(Vector(x: e, y: -e, z: e),
+                     Vector(x: -e, y: -e, z: e),
+                     Vector(x: e, y: e, z: e), color: .yellow, shadowColor: .darkYellow),
+            Triangle(Vector(x: -e, y: -e, z: e),
+                     Vector(x: -e, y: e, z: e),
+                     Vector(x: e, y: e, z: e), color: .yellow, shadowColor: .darkYellow),
+
             Triangle(Vector(x: -e, y: -e, z: -e),
                      Vector(x: -e, y: -e, z: e),
                      Vector(x: -e, y: e, z: -e)),
