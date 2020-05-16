@@ -14,6 +14,7 @@ class Scene {
     var light = Vector.zero
     var camera = Camera(position: Vector(x: 0, y: 0, z: 500), forward: Vector(x: 0, y: 0, z: -1), up: Vector(x: 0, y: -1, z: 0))
     var interlaced = false
+    var concurrentProcessing = true
     
     func renderRows(from start: Int, to finish: Int, on canvas: Canvas) {
         for j in start..<finish {
@@ -32,6 +33,14 @@ class Scene {
     }
     
     func render(on canvas: Canvas) {
+        if concurrentProcessing {
+            renderConcurrently(on: canvas)
+        } else {
+            renderSequentially(on: canvas)
+        }
+    }
+    
+    private func renderConcurrently(on canvas: Canvas) {
         let queue = DispatchQueue(label: "raytracer.worker", attributes: .concurrent)
         let group = DispatchGroup()
         let rowCount = Int(canvas.size.height)
@@ -45,6 +54,12 @@ class Scene {
         }
         
         group.wait()
+    }
+    
+    private func renderSequentially(on canvas: Canvas) {
+        let rowCount = Int(canvas.size.height)
+        
+        renderRows(from: 0, to: rowCount, on: canvas)
     }
     
     func renderPixel(_ i: Int, _ j: Int, on canvas: Canvas) {

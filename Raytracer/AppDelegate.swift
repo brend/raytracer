@@ -75,5 +75,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             sender.state = NSControl.StateValue.on
         }
     }
+    
+    
+    @IBAction func toggleConcurrentProcessing(_ sender: NSMenuItem) {
+        if sender.state == NSControl.StateValue.on {
+            scene.concurrentProcessing = false
+            sender.state = NSControl.StateValue.off
+        } else {
+            scene.concurrentProcessing = true
+            sender.state = NSControl.StateValue.on
+        }
+    }
 }
 

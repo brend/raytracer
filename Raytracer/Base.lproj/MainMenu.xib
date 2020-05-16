@@ -638,9 +638,15 @@
                                     <action selector="toggleFullScreen:" target="-1" id="dU3-MA-1Rq"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Ffc-jk-VKM"/>
                             <menuItem title="Interlaced" keyEquivalent="i" id="Cjx-7g-3Wh">
                                 <connections>
                                     <action selector="toggleInterlaced:" target="Voe-Tx-rLC" id="Wyi-Ib-eEq"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Concurrent Processing" state="on" keyEquivalent="C" id="Sbn-u8-Ifb">
+                                <connections>
+                                    <action selector="toggleConcurrentProcessing:" target="Voe-Tx-rLC" id="Aa0-gt-lVK"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -690,7 +696,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
